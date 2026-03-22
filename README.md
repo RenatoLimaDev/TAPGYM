@@ -1,8 +1,11 @@
 # TapGym
 
+[![CI](https://github.com/RenatoLimaDev/TAPGYM/actions/workflows/ci.yml/badge.svg)](https://github.com/RenatoLimaDev/TAPGYM/actions/workflows/ci.yml)
+[![Deploy](https://github.com/RenatoLimaDev/TAPGYM/actions/workflows/deploy.yml/badge.svg)](https://github.com/RenatoLimaDev/TAPGYM/actions/workflows/deploy.yml)
+
 A mobile-first progressive web app for tracking gym workouts — no account, no backend, no ads. Just tap and lift.
 
-> **Live demo:** _add your Netlify/Vercel URL here_
+> **Live demo:** https://renatolimadev.github.io/TAPGYM/
 
 ---
 
