@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg: #0c0c0d;
+  --s1: #161618;
+  --s2: #202022;
+  --b:  #2a2a2e;
+  --t1: #f0f0ee;
+  --t2: #80807c;
+  --t3: #3a3a3e;
+  --ac: #e8ff47;
+  --bl: #4a9fd4;
+  --gr: #3db882;
+  --rd: #e05555;
+  --or: #ff6b35;
+  --fn: 'Syne', sans-serif;
+  --mo: 'JetBrains Mono', monospace;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: var(--fn);
+  color: var(--t1);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  min-width: 320px;
+  max-width: 560px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+input, button { font-family: inherit; }
+
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+@keyframes spiral {
+  0%   { transform: rotate(0deg)   scale(1);   }
+  35%  { transform: rotate(360deg) scale(0.4); }
+  70%  { transform: rotate(600deg) scale(0.85);}
+  100% { transform: rotate(720deg) scale(1);   }
+}
