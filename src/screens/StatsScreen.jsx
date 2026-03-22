@@ -1,4 +1,3 @@
-import { fmtDuration } from '../utils/db.js'
 
 export default function StatsScreen({ db, onBack }) {
   const hist = db.history
@@ -8,6 +7,9 @@ export default function StatsScreen({ db, onBack }) {
   const totalSessions = hist.length
   const totalSets     = hist.reduce((a, h) => a + (h.sets || 0), 0)
   const totalSecs     = hist.reduce((a, h) => a + (h.dur || 0), 0)
+  const totalTime     = totalSecs >= 3600
+    ? `${Math.floor(totalSecs / 3600)}h ${Math.floor((totalSecs % 3600) / 60)}m`
+    : `${Math.floor(totalSecs / 60)}m`
 
   // ── Weekly frequency — last 8 weeks ──────────────────────────────────────
   const weeks = Array.from({ length: 8 }, (_, wi) => {
@@ -48,7 +50,7 @@ export default function StatsScreen({ db, onBack }) {
           {[
             { label: 'Sessions', value: totalSessions },
             { label: 'Sets',     value: totalSets },
-            { label: 'Time',     value: fmtDuration(totalSecs) },
+            { label: 'Time',     value: totalTime },
           ].map(({ label, value }) => (
             <div key={label} style={{ flex: 1, background: 'var(--s1)', border: '1px solid var(--b)', borderRadius: 14, padding: '14px 0', textAlign: 'center' }}>
               <div style={{ fontSize: 22, fontWeight: 700, fontFamily: 'var(--mo)', color: 'var(--ac)' }}>{value}</div>

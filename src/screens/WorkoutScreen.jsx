@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { useConfirm } from '../hooks/useConfirm.js'
 import { fmtDuration, dispKg, vibe } from '../utils/db.js'
 
-export default function WorkoutScreen({ db, workoutId, onFinish, onEnd, onToast }) {
+export default function WorkoutScreen({ db, workoutId, onFinish, onEnd, onToast, onFlashUnit }) {
   const workout = db.workouts.find(w => w.id === workoutId)
 
   const [exs, setExs] = useState(() =>
@@ -208,6 +208,7 @@ export default function WorkoutScreen({ db, workoutId, onFinish, onEnd, onToast 
       if (!startTime) setStartTime(newStart)
       currentSetStartRef.current = now
       setExs(prev => prev.map((e, i) => i === exIdx ? { ...e, phase: 'active', _setStart: now } : e))
+      onFlashUnit?.()
       vibe(20)
       return
     }

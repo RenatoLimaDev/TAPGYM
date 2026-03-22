@@ -9,6 +9,21 @@ A mobile-first progressive web app for tracking gym workouts — no account, no 
 
 ---
 
+## Preview
+
+<p align="center">
+  <img src=".github/assets/preview.gif" alt="TapGym demo" width="320" />
+</p>
+
+<p align="center">
+  <img src=".github/assets/home.png" alt="Home screen" width="190" />
+  <img src=".github/assets/workout.png" alt="Active workout" width="190" />
+  <img src=".github/assets/stats.png" alt="Stats" width="190" />
+  <img src=".github/assets/history.png" alt="History" width="190" />
+</p>
+
+---
+
 ## Features
 
 ### Workout management

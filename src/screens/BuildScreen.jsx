@@ -199,6 +199,19 @@ export default function BuildScreen({ db, editId, onSave, onBack, onToast }) {
           </div>
         ))}
 
+        {exercises.length > 0 && (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            margin: '4px 0 10px', opacity: 0.6,
+          }}>
+            <div style={{ flex: 1, height: 1, background: 'var(--b)' }} />
+            <span style={{ fontFamily: 'var(--mo)', fontSize: 10, color: 'var(--t3)', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'var(--rd)' }}>■</span> tap left to decrease · <span style={{ color: 'var(--gr)' }}>■</span> tap right to increase
+            </span>
+            <div style={{ flex: 1, height: 1, background: 'var(--b)' }} />
+          </div>
+        )}
+
         <div
           onClick={addExercise}
           style={{

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useDb }    from './hooks/useDb.js'
 import { useToast } from './hooks/useToast.js'
 
@@ -8,26 +8,42 @@ import WorkoutScreen         from './screens/WorkoutScreen.jsx'
 import HistoryScreen         from './screens/HistoryScreen.jsx'
 import StatsScreen           from './screens/StatsScreen.jsx'
 import WorkoutMetricsOverlay from './components/WorkoutMetricsOverlay.jsx'
+import UnitToggle            from './components/UnitToggle.jsx'
 import Toast                 from './components/Toast.jsx'
 
 export default function App() {
   const { db, save }   = useDb()
   const { msg, show }  = useToast()
 
-  // screen: 'home' | 'build' | 'workout' | 'history' | 'stats'
   const [screen,    setScreen]    = useState('home')
-  const [editId,    setEditId]    = useState(null)   // workout id being edited (null = new)
-  const [workoutId, setWorkoutId] = useState(null)   // workout id being run
-  const [metrics,   setMetrics]   = useState(null)   // { workoutId, entry }
+  const [editId,    setEditId]    = useState(null)
+  const [workoutId, setWorkoutId] = useState(null)
+  const [metrics,   setMetrics]   = useState(null)
 
-  const goHome    = () => setScreen('home')
+  const [unitVisible,  setUnitVisible]  = useState(true)
+  const [unitSpinning, setUnitSpinning] = useState(false)
+  const hideTimerRef = useRef()
+
+  const flashUnit = () => {
+    setUnitVisible(true)
+    clearTimeout(hideTimerRef.current)
+    hideTimerRef.current = setTimeout(() => setUnitVisible(false), 4000)
+  }
+
+  const saveUnit = newDb => {
+    setUnitSpinning(true)
+    flashUnit()
+    save(newDb)
+    setTimeout(() => setUnitSpinning(false), 700)
+  }
+
+  const goHome    = () => { setScreen('home');    flashUnit() }
   const goBuild   = id  => { setEditId(id ?? null); setScreen('build') }
-  const goWorkout = id  => { setWorkoutId(id); setScreen('workout') }
+  const goWorkout = id  => { setWorkoutId(id); setScreen('workout'); flashUnit() }
   const goHistory = ()  => setScreen('history')
   const goStats   = ()  => setScreen('stats')
 
   const handleFinish = entry => {
-    // Auto-progression: if all sets done with reps >= target, bump kg +2.5 for next session
     const workout = db.workouts.find(w => w.id === entry.wid)
     let workouts = db.workouts
     const progressedNames = []
@@ -64,6 +80,7 @@ export default function App() {
           onShowMetrics={(wid, entry) => setMetrics({ workoutId: wid, entry })}
           onOpenHistory={goHistory}
           onOpenStats={goStats}
+          onFlashUnit={flashUnit}
         />
       )}
 
@@ -84,6 +101,8 @@ export default function App() {
           onFinish={handleFinish}
           onEnd={goHome}
           onToast={show}
+          onSave={save}
+          onFlashUnit={flashUnit}
         />
       )}
 
@@ -103,7 +122,6 @@ export default function App() {
         />
       )}
 
-      {/* Workout metrics overlay (shown from home or history) */}
       {metrics && (() => {
         const w = db.workouts.find(x => x.id === metrics.workoutId)
         if (!w) return null
@@ -118,6 +136,8 @@ export default function App() {
           />
         )
       })()}
+
+      <UnitToggle db={db} onSave={saveUnit} visible={unitVisible} spinning={unitSpinning} />
 
       <Toast msg={msg} />
     </div>

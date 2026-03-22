@@ -73,12 +73,13 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
                   key={m}
                   onClick={() => { onChange({ muscle: m, ...(m === 'Cardio' && !exercise.min ? { min: 20 } : {}) }); setMuscleOpen(false) }}
                   style={{
-                    padding: '4px 10px', borderRadius: 20, fontSize: 10, whiteSpace: 'nowrap',
+                    padding: '8px 14px', borderRadius: 20, fontSize: 13, whiteSpace: 'nowrap',
                     fontFamily: 'var(--mo)', cursor: 'pointer',
                     background: exercise.muscle === m ? 'rgba(232,255,71,.12)' : 'var(--b)',
                     border: `1px solid ${exercise.muscle === m ? 'rgba(232,255,71,.4)' : 'transparent'}`,
                     color: exercise.muscle === m ? 'var(--ac)' : 'var(--t2)',
                     transition: 'all .12s',
+                    minHeight: 44, display: 'inline-flex', alignItems: 'center',
                   }}
                 >
                   {m}
@@ -89,11 +90,11 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
         ) : (
           <div
             onClick={() => setMuscleOpen(true)}
-            style={{ flex: 1, padding: '6px 28px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}
+            style={{ flex: 1, padding: '10px 28px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, minHeight: 44 }}
           >
-            <span style={{ fontSize: 8, fontFamily: 'var(--mo)', color: 'var(--t3)', letterSpacing: '.1em', textTransform: 'uppercase' }}>muscle</span>
-            <span style={{ fontSize: 10, fontFamily: 'var(--mo)', color: 'var(--ac)' }}>{exercise.muscle}</span>
-            <span style={{ fontSize: 8, color: 'var(--t3)', marginLeft: -3 }}>▾</span>
+            <span style={{ fontSize: 10, fontFamily: 'var(--mo)', color: 'var(--t3)', letterSpacing: '.1em', textTransform: 'uppercase' }}>muscle</span>
+            <span style={{ fontSize: 13, fontFamily: 'var(--mo)', color: 'var(--ac)' }}>{exercise.muscle}</span>
+            <span style={{ fontSize: 10, color: 'var(--t3)', marginLeft: -3 }}>▾</span>
           </div>
         )}
 
@@ -121,9 +122,9 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
         {/* Header row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
           <div style={{
-            width: 22, height: 22, borderRadius: 6, background: 'var(--s2)',
+            width: 28, height: 28, borderRadius: 6, background: 'var(--s2)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 10, fontFamily: 'var(--mo)', color: 'var(--t3)', flexShrink: 0,
+            fontSize: 12, fontFamily: 'var(--mo)', color: 'var(--t3)', flexShrink: 0,
           }}>
             {index + 1}
           </div>
@@ -165,7 +166,7 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
             <ParamSpin label="Min" value={exercise.min || 20} unit="min" onDown={() => spin('min', -1)} onUp={() => spin('min', 1)} />
           ) : (
             <>
-              <ParamSpin label="Target" value={dispKg(exercise.kg, unit)} unit={unit} onDown={() => spinKg(-1)} onUp={() => spinKg(1)} />
+              <ParamSpin label="Target" value={dispKg(exercise.kg, unit)} unit={unit} onDown={() => spinKg(-1)} onUp={() => spinKg(1)} flex={1.6} />
               <ParamSpin label="Reps"   value={exercise.reps || 8}        unit=""     onDown={() => spin('reps', -1)} onUp={() => spin('reps', 1)} />
               <ParamSpin label="Prog"   value={(exercise.progressStep ?? 2) > 0 ? `+${exercise.progressStep ?? 2}` : 'off'} unit={(exercise.progressStep ?? 2) > 0 ? unit : ''} onDown={() => spin('progressStep', -1)} onUp={() => spin('progressStep', 1)} />
             </>
