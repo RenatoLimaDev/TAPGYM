@@ -43,7 +43,7 @@ export default function StatsScreen({ db, onBack }) {
       </div>
 
       {/* Body */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px', paddingBottom: 'max(env(safe-area-inset-bottom), 40px)', display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px', paddingBottom: 'max(env(safe-area-inset-bottom), 40px)', display: 'flex', flexDirection: 'column', gap: 32 }}>
 
         {/* Totals */}
         <div style={{ display: 'flex', gap: 10 }}>
@@ -52,9 +52,9 @@ export default function StatsScreen({ db, onBack }) {
             { label: 'Sets',     value: totalSets },
             { label: 'Time',     value: totalTime },
           ].map(({ label, value }) => (
-            <div key={label} style={{ flex: 1, background: 'var(--s1)', border: '1px solid var(--b)', borderRadius: 14, padding: '14px 0', textAlign: 'center' }}>
-              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: 'var(--mo)', color: 'var(--ac)' }}>{value}</div>
-              <div style={{ fontSize: 9, fontFamily: 'var(--mo)', color: 'var(--t3)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: 4 }}>{label}</div>
+            <div key={label} style={{ flex: 1, background: 'var(--s1)', border: '1px solid var(--b)', borderRadius: 14, padding: '22px 0', textAlign: 'center' }}>
+              <div style={{ fontSize: 26, fontWeight: 700, fontFamily: 'var(--mo)', color: 'var(--ac)' }}>{value}</div>
+              <div style={{ fontSize: 10, fontFamily: 'var(--mo)', color: 'var(--t3)', textTransform: 'uppercase', letterSpacing: '.1em', marginTop: 6 }}>{label}</div>
             </div>
           ))}
         </div>

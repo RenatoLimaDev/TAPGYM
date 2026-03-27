@@ -67,7 +67,7 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
             maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
           }}>
-            <div style={{ display: 'flex', gap: 5, padding: '8px 28px', width: 'max-content' }}>
+            <div style={{ display: 'flex', gap: 5, padding: '8px 18px', width: 'max-content' }}>
               {MUSCLES.map(m => (
                 <div
                   key={m}
@@ -90,7 +90,7 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
         ) : (
           <div
             onClick={() => setMuscleOpen(true)}
-            style={{ flex: 1, padding: '10px 28px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, minHeight: 44 }}
+            style={{ flex: 1, padding: '10px 18px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, minHeight: 44 }}
           >
             <span style={{ fontSize: 10, fontFamily: 'var(--mo)', color: 'var(--t3)', letterSpacing: '.1em', textTransform: 'uppercase' }}>muscle</span>
             <span style={{ fontSize: 13, fontFamily: 'var(--mo)', color: 'var(--ac)' }}>{exercise.muscle}</span>
@@ -117,10 +117,10 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
       </div>
 
       {/* Main content */}
-      <div style={{ background: 'var(--s1)', padding: '12px 28px 16px' }}>
+      <div style={{ background: 'var(--s1)', padding: '14px 18px 16px' }}>
 
         {/* Header row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
           <div style={{
             width: 28, height: 28, borderRadius: 6, background: 'var(--s2)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -159,19 +159,25 @@ export default function ExerciseCard({ exercise, index, unit, onChange, onDelete
         </div>
 
         {/* Param spinners */}
-        <div style={{ display: 'flex', gap: 8 }}>
-          <ParamSpin label="Sets" value={exercise.sets} unit="" onDown={() => spin('sets', -1)} onUp={() => spin('sets', 1)} />
-          <ParamSpin label="Rest" value={exercise.rest} unit="s" onDown={() => spin('rest', -1)} onUp={() => spin('rest', 1)} />
-          {exercise.muscle === 'Cardio' ? (
-            <ParamSpin label="Min" value={exercise.min || 20} unit="min" onDown={() => spin('min', -1)} onUp={() => spin('min', 1)} />
-          ) : (
-            <>
-              <ParamSpin label="Target" value={dispKg(exercise.kg, unit)} unit={unit} onDown={() => spinKg(-1)} onUp={() => spinKg(1)} flex={1.6} />
-              <ParamSpin label="Reps"   value={exercise.reps || 8}        unit=""     onDown={() => spin('reps', -1)} onUp={() => spin('reps', 1)} />
-              <ParamSpin label="Prog"   value={(exercise.progressStep ?? 2) > 0 ? `+${exercise.progressStep ?? 2}` : 'off'} unit={(exercise.progressStep ?? 2) > 0 ? unit : ''} onDown={() => spin('progressStep', -1)} onUp={() => spin('progressStep', 1)} />
-            </>
-          )}
-        </div>
+        {exercise.muscle === 'Cardio' ? (
+          <div style={{ display: 'flex', gap: 6 }}>
+            <ParamSpin label="Sets" value={exercise.sets} unit="" onDown={() => spin('sets', -1)} onUp={() => spin('sets', 1)} />
+            <ParamSpin label="Min"  value={exercise.min || 20} unit="min" onDown={() => spin('min', -1)} onUp={() => spin('min', 1)} />
+            <ParamSpin label="Rest" value={exercise.rest} unit="s" onDown={() => spin('rest', -1)} onUp={() => spin('rest', 1)} />
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <div style={{ display: 'flex', gap: 6 }}>
+              <ParamSpin label="Sets" value={exercise.sets}      unit=""   onDown={() => spin('sets', -1)} onUp={() => spin('sets', 1)} />
+              <ParamSpin label="Reps" value={exercise.reps || 8} unit=""   onDown={() => spin('reps', -1)} onUp={() => spin('reps', 1)} />
+              <ParamSpin label="Rest" value={exercise.rest}      unit="s"  onDown={() => spin('rest', -1)} onUp={() => spin('rest', 1)} />
+            </div>
+            <div style={{ display: 'flex', gap: 6 }}>
+              <ParamSpin label="Target" value={dispKg(exercise.kg, unit)} unit={unit} onDown={() => spinKg(-1)} onUp={() => spinKg(1)} flex={2} />
+              <ParamSpin label="Prog"   value={(exercise.progressStep ?? 2) > 0 ? `+${exercise.progressStep ?? 2}` : 'off'} unit={(exercise.progressStep ?? 2) > 0 ? unit : ''} onDown={() => spin('progressStep', -1)} onUp={() => spin('progressStep', 1)} flex={1} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

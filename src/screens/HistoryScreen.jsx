@@ -58,16 +58,16 @@ export default function HistoryScreen({ db, onBack, onShowMetrics, onClearHistor
                 onClick={() => w && onShowMetrics(h.wid, h)}
                 style={{
                   background: 'var(--s1)', border: '1px solid var(--b)',
-                  borderRadius: 16, padding: 16, marginBottom: 8,
+                  borderRadius: 16, padding: 20, marginBottom: 10,
                   cursor: w ? 'pointer' : 'default',
                   transition: 'border-color .15s',
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                  <div style={{ fontSize: 15, fontWeight: 700 }}>{w ? w.name : 'Deleted workout'}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                  <div style={{ fontSize: 17, fontWeight: 700 }}>{w ? w.name : 'Deleted workout'}</div>
                   <div style={{ fontFamily: 'var(--mo)', fontSize: 10, color: 'var(--t3)' }}>{dateStr}</div>
                 </div>
-                <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
                   {[
                     ['Sets', h.sets || 0],
                     ['Time', fmtDuration(h.dur || 0)],

@@ -63,13 +63,13 @@ export default function HomeScreen({ db, onSave, onOpenBuild, onStartWorkout, on
       {/* ── Header + Day chips ── */}
       <div style={{ position: 'relative', flexShrink: 0, zIndex: 1 }}>
         <div style={{
-          padding: 'max(env(safe-area-inset-top), 36px) 20px 12px',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          padding: 'max(env(safe-area-inset-top), 16px) 20px 12px',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8,
         }}>
-          <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '.06em', color: 'var(--ac)' }}>TAPGYM</div>
+          <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '.06em', color: 'var(--ac)' }}>TAPGYM</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ fontFamily: 'var(--mo)', fontSize: 11, color: 'var(--t3)' }}>
-              {new Date().toLocaleDateString('en', { weekday: 'short', month: 'short', day: 'numeric' })}
+            <div style={{ fontFamily: 'var(--mo)', fontSize: 10, color: 'var(--t3)', whiteSpace: 'nowrap' }}>
+              {new Date().toLocaleDateString('en', { month: 'short', day: 'numeric' })}
             </div>
             <div
               onClick={() => setShowTour(true)}
@@ -114,8 +114,8 @@ export default function HomeScreen({ db, onSave, onOpenBuild, onStartWorkout, on
       </div>
 
       {/* ── Body ── */}
-      <div onScroll={onFlashUnit} style={{ flex: 1, overflowY: 'auto', padding: '0 20px', paddingBottom: 'max(env(safe-area-inset-bottom), 24px)' }}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--t3)', margin: '8px 0 8px' }}>
+      <div onScroll={onFlashUnit} style={{ flex: 1, overflowY: 'auto', padding: '0 16px', paddingBottom: 'max(env(safe-area-inset-bottom), 32px)' }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--t3)', margin: '12px 0 12px' }}>
           My Workouts
         </div>
 

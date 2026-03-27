@@ -129,11 +129,11 @@ export default function BuildScreen({ db, editId, onSave, onBack, onToast }) {
       {/* ── Header ── */}
       <div style={{
         paddingTop: 'max(env(safe-area-inset-top), 16px)',
-        padding: 'max(env(safe-area-inset-top), 16px) 20px 16px',
-        display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0,
+        padding: 'max(env(safe-area-inset-top), 14px) 16px 14px',
+        display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0,
       }}>
         {/* Back */}
-        <div onClick={onBack} style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--s2)', border: '1px solid var(--b)', color: 'var(--t1)', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+        <div onClick={onBack} style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--s2)', border: '1px solid var(--b)', color: 'var(--t1)', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
           ←
         </div>
 
@@ -146,14 +146,14 @@ export default function BuildScreen({ db, editId, onSave, onBack, onToast }) {
           style={{
             flex: 1, background: 'transparent', border: 'none',
             color: nameErr ? 'var(--rd)' : 'var(--t1)',
-            fontFamily: 'var(--fn)', fontSize: 18, fontWeight: 700,
+            fontFamily: 'var(--fn)', fontSize: 16, fontWeight: 700,
             outline: 'none', letterSpacing: '-.02em', minWidth: 0,
             transition: 'color .3s',
           }}
         />
 
         {/* Day picker */}
-        <div onClick={cycleDay} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '6px 12px', background: 'var(--s2)', border: '1px solid var(--b)', borderRadius: 10, cursor: 'pointer', flexShrink: 0, gap: 1 }}>
+        <div onClick={cycleDay} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '5px 10px', background: 'var(--s2)', border: '1px solid var(--b)', borderRadius: 10, cursor: 'pointer', flexShrink: 0, gap: 1 }}>
           <div style={{ fontSize: 8, fontFamily: 'var(--mo)', color: 'var(--t3)', letterSpacing: '.1em', textTransform: 'uppercase' }}>day</div>
           <div style={{ fontSize: 13, fontFamily: 'var(--mo)', color: 'var(--ac)', fontWeight: 700 }}>{DAYS_SHORT[day]}</div>
         </div>
@@ -161,24 +161,24 @@ export default function BuildScreen({ db, editId, onSave, onBack, onToast }) {
         {/* Delete */}
         {editId && (
           <div onClick={deleteWorkout} style={{
-            padding: '10px 14px',
+            padding: '8px 10px',
             background: delConfirm ? 'rgba(224,85,85,.15)' : 'transparent',
             border: `1px solid ${delConfirm ? 'var(--rd)' : 'var(--b)'}`,
             borderRadius: 10, color: delConfirm ? 'var(--rd)' : 'var(--t3)',
-            fontSize: 13, fontWeight: 700, cursor: 'pointer', flexShrink: 0,
+            fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0,
           }}>
             {delConfirm ? 'Sure?' : 'Del'}
           </div>
         )}
 
         {/* Save */}
-        <div onClick={save} style={{ padding: '10px 18px', background: 'var(--ac)', color: '#0c0c0d', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>
+        <div onClick={save} style={{ padding: '8px 14px', background: 'var(--ac)', color: '#0c0c0d', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>
           Save
         </div>
       </div>
 
       {/* ── Exercise list ── */}
-      <div ref={bodyRef} style={{ flex: 1, overflowY: 'auto', padding: '0 20px', paddingBottom: 'max(env(safe-area-inset-bottom), 40px)' }}>
+      <div ref={bodyRef} style={{ flex: 1, overflowY: 'auto', padding: '8px 16px', paddingBottom: 'max(env(safe-area-inset-bottom), 48px)' }}>
         {exercises.map((ex, i) => (
           <div key={ex.id} ref={el => { cardRefs.current[i] = el }} style={{ position: 'relative' }}>
             <ExerciseCard
